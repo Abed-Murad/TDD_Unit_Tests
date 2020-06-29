@@ -1,6 +1,7 @@
 package com.raywenderlich.android.cocktails.game.model
 
 import org.junit.*
+import java.lang.IllegalArgumentException
 
 class QuestionUnitTests {
     @Test
@@ -38,5 +39,11 @@ class QuestionUnitTests {
         val result = question.answer("INCORRECT")
 
         Assert.assertFalse("Result should be 'false'", result)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun whenAnswering_withInvalidOption_shouldThrowException() {
+        val question = Question("CORRECT", "INCORRECT")
+        question.answer("INVALID")
     }
 }
