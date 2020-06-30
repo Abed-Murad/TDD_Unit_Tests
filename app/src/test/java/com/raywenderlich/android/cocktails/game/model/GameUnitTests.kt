@@ -4,9 +4,12 @@ import org.junit.Assert
 import org.junit.Test
 
 class GameUnitTests {
+
+
+
     @Test
     fun whenIncrementingScore_shouldIncrementCurrentScore() {
-        val game = Game()
+        val game = Game(emptyList())
 
         game.incrementScore()
 
@@ -15,21 +18,39 @@ class GameUnitTests {
 
     @Test
     fun whenIncrementingScore_aboveHighScore_shouldAlsoIncrementHighScore() {
-        val game = Game()
+        val game = Game(emptyList())
 
         game.incrementScore()
 
-        Assert.assertEquals(1,  game.highestScore)
+        Assert.assertEquals(1, game.highestScore)
     }
 
     @Test
     fun whenIncrementingScore_belowHighScore_shouldNotIncrementHighScore() {
-        val game = Game(10)
+        val game = Game(emptyList(), 10)
 
         game.incrementScore()
 
-        Assert.assertEquals(10,  game.highestScore)
+        Assert.assertEquals(10, game.highestScore)
     }
 
+    @Test
+    fun whenGettingNextQuestion_shouldReturnIt() {
+        val question1 = Question("CORRECT", "INCORRECT")
+        val questions = listOf(question1)
 
+        val game = Game(questions)
+        val nextQuestion = game.nextQuestion()
+        Assert.assertSame(question1, nextQuestion)
+    }
+
+    @Test
+    fun whenGettingNextQuestion_nextIsNull_shouldReturnNull() {
+        val question1 = Question("CORRECT", "INCORRECT")
+        val questions = listOf(question1)
+        val game = Game(questions)
+        val nextQuestion = game.nextQuestion()
+        val nullQuestion = game.nextQuestion()
+        Assert.assertNull(nullQuestion)
+    }
 }
