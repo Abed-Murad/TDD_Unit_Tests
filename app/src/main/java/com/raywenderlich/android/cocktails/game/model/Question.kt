@@ -18,4 +18,6 @@ class Question(val correctOption: String, val incorrectOption: String) {
 
     var answeredOption: String? = null
         private set
+
+    fun getOptions(sort: (List<String>) -> List<String> = { it.shuffled() }) = sort(listOf(correctOption, incorrectOption))
 }

@@ -41,4 +41,10 @@ class QuestionUnitTests {
     fun whenAnswering_withInvalidOption_shouldThrowException() {
         question.answer("INVALID")
     }
+
+    @Test
+    fun whenCreatingQuestion_shouldReturnOptionsWIthCustomSOrt() {
+        val options = question.getOptions { it.reversed() }
+        Assert.assertEquals(listOf("INCORRECT", "CORRECT"), options)
+    }
 }

@@ -6,7 +6,6 @@ import org.junit.Test
 class GameUnitTests {
 
 
-
     @Test
     fun whenIncrementingScore_shouldIncrementCurrentScore() {
         val game = Game(emptyList())
@@ -53,4 +52,5 @@ class GameUnitTests {
         val nullQuestion = game.nextQuestion()
         Assert.assertNull(nullQuestion)
     }
+
 }
